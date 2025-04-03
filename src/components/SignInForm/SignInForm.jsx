@@ -47,7 +47,7 @@ const SignInForm = () => {
                 <div>
                     <label htmlFor='password'>Password</label>
                     <input 
-                        type='text'
+                        type='password'
                         autoComplete='off'
                         id='password'
                         name='password'

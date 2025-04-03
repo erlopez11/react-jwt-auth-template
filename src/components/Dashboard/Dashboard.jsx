@@ -1,15 +1,16 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import { index } from '../../services/userService';
 
 const Dashboard = () => {
     const { user } = useContext(UserContext);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         const fetchUsers = async () => {
             try {
                 const fetchedUsers = await index();
-                console.log(fetchedUsers);
+                setUsers(fetchedUsers);
             } catch (error) {
                 console.error(error);
             }
@@ -22,6 +23,11 @@ const Dashboard = () => {
         <main>
             <h1>Welcome, {user.username}</h1>
             <p>This is the dashboard where you can see a list of all the users.</p>
+            <ul>
+                {users.map((user) => (
+                    <li>{user.username}</li>
+                ))}
+            </ul>
         </main>
     );
 };
